@@ -1,0 +1,27 @@
+CREATE TABLE Users (
+    UserID INTEGER PRIMARY KEY,
+    Name TEXT,
+    Password TEXT,
+    ConfirmPassword TEXT,
+    Phone TEXT,
+    Email TEXT
+);
+
+CREATE TABLE Habits (
+    HabitID INTEGER PRIMARY KEY,
+    UserID INTEGER,
+    Habit TEXT,
+    Date TEXT,
+    FOREIGN KEY(UserID) REFERENCES Users(UserID)
+);
+
+INSERT INTO Users (Name, Password, ConfirmPassword, Phone, Email) VALUES ('John Doe', 'password123', 'password123', '1234567890', 'johndoe@example.com');
+INSERT INTO Users (Name, Password, ConfirmPassword, Phone, Email) VALUES ('Jane Smith', 'password456', 'password456', '0987654321', 'janesmith@example.com');
+
+INSERT INTO Habits (UserID, Habit, Date) VALUES (1, 'Running', '2024-03-01');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (1, 'Reading', '2024-03-02');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (2, 'Meditation', '2024-03-01');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (2, 'Yoga', '2024-03-02');
+
+select * from Habits;
+

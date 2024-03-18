@@ -1,0 +1,58 @@
+CREATE TABLE Users (
+    UserID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT,
+    Password TEXT,
+    ConfirmPassword TEXT,
+    Phone TEXT,
+    Email TEXT
+);
+
+CREATE TABLE Habits (
+    HabitID INTEGER PRIMARY KEY,
+    UserID INTEGER,
+    Habit TEXT,
+    Date TEXT,
+    FOREIGN KEY(UserID) REFERENCES Users(UserID)
+);
+
+INSERT INTO Users (Name, Password, ConfirmPassword, Phone, Email) VALUES ('John Doe', 'password123', 'password123', '1234567890', 'johndoe@example.com');
+INSERT INTO Users (Name, Password, ConfirmPassword, Phone, Email) VALUES ('Jane Smith', 'password456', 'password456', '0987654321', 'janesmith@example.com');
+
+INSERT INTO Habits (UserID, Habit, Date) VALUES (1, 'Running', '2024-03-01');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (1, 'Reading', '2024-03-02');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (2, 'Meditation', '2024-03-01');
+INSERT INTO Habits (UserID, Habit, Date) VALUES (2, 'Yoga', '2024-03-02');
+
+-- Step 1: Create a new table without the UserID column
+CREATE TABLE Users_new (
+    Name TEXT,
+    Password TEXT,
+    ConfirmPassword TEXT,
+    Phone TEXT,
+    Email TEXT
+);
+
+-- Step 2: Copy the data from the old table to the new one
+INSERT INTO Users_new (Name, Password, ConfirmPassword, Phone, Email)
+SELECT Name, Password, ConfirmPassword, Phone, Email FROM Users;
+
+-- Step 3: Drop the old table
+DROP TABLE Users;
+
+-- Step 4: Rename the new table to the original name
+ALTER TABLE Users_new RENAME TO Users;
+
+
+select * from Users;
+
+INSERT INTO Users (Name, Email, Phone, Password, ConfirmPassword) VALUES ('Jane Smith', '0987654321', 'janesmith@example.com', 'password456', 'password456');
+
+CREATE TABLE Users (
+    Name TEXT,
+    Password TEXT,
+    ConfirmPassword TEXT,
+    Phone TEXT,
+    Email TEXT
+);
+
+select * from Users;
